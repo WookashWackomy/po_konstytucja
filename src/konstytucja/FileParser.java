@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 
 public class FileParser {
@@ -76,7 +77,8 @@ public class FileParser {
                     textbeings[2]=true;
                 }
                 else if (isLetter(check_rest)) {
-
+                    letter_idx++;
+                    textbeings[3]=true;
                 }
 
 
@@ -87,28 +89,38 @@ public class FileParser {
         }
 
     }
-    public LinkedHashSet<Letter> parseLetters(){
-        LinkedHashSet<Letter> parsedletters = new LinkedHashSet<Letter>();
+    public ArrayList<Letter> parseLetters(){
+        ArrayList<Letter> parsedletters = new ArrayList<Letter>();
+        for(int i=0; i<this.LetterLines.length; i++){
+            parsedletters.add(i,new Letter(Integer.toString(i),this.LetterLines[i]));
+        }
 
         return parsedletters;
     }
-    public LinkedHashSet<Passage> parsePassages(){
-        LinkedHashSet<Passage> parsedpassages = new LinkedHashSet<Passage>();
-
+    public ArrayList<Passage> parsePassages(ArrayList<Letter> parsedletters){
+        ArrayList<Passage> parsedpassages = new ArrayList<Passage>();
+        for(int i=0; i<parsedletters.size();i++){
+           // ArrayList<Letter> subarray
+        }
         return parsedpassages;
     }
-    public LinkedHashSet<Paragraph> parseParagraphs(){
-        LinkedHashSet<Paragraph> parsedparagraphs = new LinkedHashSet<Paragraph>();
+    public ArrayList<Paragraph> parseParagraphs(){
+        ArrayList<Paragraph> parsedparagraphs = new ArrayList<Paragraph>();
 
         return parsedparagraphs;
     }
-    public LinkedHashSet<Article> parseArticles(){
-        LinkedHashSet<Article> parsedarticles = new LinkedHashSet<Article>();
+    public ArrayList<Article> parseArticles(Paragraph[] parsedParagraphs){
+        ArrayList<Article> parsedarticles = new ArrayList<Article>();
+        int i;
+        for (i = 0; i < parsedarticles.size(); i++) {
+            //ArrayList<Paragraph> subarray = Arrays.copyOfRange(parsedParagraphs,this.ArticleNumbers[i],this.ArticleNumbers[i+1]);
+            //parsedarticles[i] = new Article(i + 1, this.formatText(ArticleLines[i]),subarray);
+        }
 
         return parsedarticles;
     }
-    public LinkedHashSet<Section> parseSections() {
-        LinkedHashSet<Section> parsedsections = new LinkedHashSet<Section>();
+    public ArrayList<Section> parseSections() {
+        ArrayList<Section> parsedsections = new ArrayList<Section>();
 
         return parsedsections;
     }
@@ -132,4 +144,7 @@ public class FileParser {
         if(Character.isLetter(chars[0]) && chars[1]==')') return true;
         return false;
     }
+
+
+
 }

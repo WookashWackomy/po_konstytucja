@@ -27,4 +27,12 @@ public class Section {
     public String getTitle(){
         return this.title;
     }
+    public String getToC(){
+        String output="";
+        output+=this.title+"\n";
+        for(Chapter a: this.chapters){
+            output+=a.getToC();
+        }
+        return output;
+    }
 }

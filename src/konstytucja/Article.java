@@ -27,4 +27,8 @@ public class Article {
         }
         return output;
     }
+    public String getTitle(){
+        String title= "" + "Art. " + this.number + ". " + this.content.split(System.lineSeparator(),2) + "\n";
+        return title;
+    }
 }
